@@ -5,6 +5,15 @@
 *       
 *       
 */
+const fullUnit = {
+  kg: "kilograms",
+  lbs: "pounds",
+  gal: "gallons",
+  L: "liters",
+  mi: "miles",
+  km: "kilometers"
+}
+
 const validateUnit = (val) => {
 
   const units = {
@@ -99,9 +108,21 @@ function ConvertHandler() {
   };
   
   this.getReturnUnit = function(initUnit) {
-    var result;
     
-    return result;
+    switch(initUnit) {
+      case "gal":
+        return "L"
+      case "L":
+        return "gal"
+      case "lbs":
+        return "kg"
+      case "kg":
+        return "lbs"
+      case "mi":
+        return "km"
+      case "km":
+        return "mi"
+    }
   };
 
   this.spellOutUnit = function(unit) {
@@ -114,15 +135,35 @@ function ConvertHandler() {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    var result;
-    
-    return result;
+    let value
+
+    switch(initUnit) {
+      
+      case "gal":
+        value = initNum * galToL
+        break
+      case "L":
+        value = initNum / galToL
+        break
+      case "lbs":
+        value = initNum * lbsToKg
+        break
+      case "kg":
+        value = initNum / lbsToKg
+        break
+      case "mi":
+        value = initNum * miToKm
+        break
+      case "km":
+        value = initNum / miToKm
+        break
+    }
+    return roundNum(value)
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    var result;
-    
-    return result;
+
+    return `${initNum} ${fullUnit[initUnit]} converts to ${returnNum} ${fullUnit[returnUnit]}`
   };
   
 }
