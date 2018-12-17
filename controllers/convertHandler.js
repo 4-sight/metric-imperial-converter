@@ -66,8 +66,8 @@ function ConvertHandler() {
     const splitPoint = input.search(/[^\.|^\d|^\/]/)
     let value = input.slice(0, splitPoint)
     try {
-      if (!value) {
-        value = 1
+      if (!value) {console.log("here")
+        return 1
       } else {
         if (value.match(/\/+/g) && value.match(/\/+/g).length > 1) {
           throw "invalid number"
