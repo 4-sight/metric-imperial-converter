@@ -31,7 +31,7 @@ const validateUnit = (val) => {
   let test = units[val]
 
   if (!test) {
-    return "invalid unit"
+    throw "invalid unit"
   }
   return test
 }
@@ -85,7 +85,7 @@ function ConvertHandler() {
       }
     }
     catch(err) {
-      return "invalid number"
+      return false
     }
   };
   
@@ -93,8 +93,9 @@ function ConvertHandler() {
     
     const splitPoint = input.search(/[^\.|^\d|^\/]/)
     let value = input.slice(splitPoint)
-    let validated = validateUnit(value)
-    return validated
+    try {validateUnit(value)}
+    catch(err) {return false}
+    return value
   };
   
   this.getReturnUnit = function(initUnit) {
