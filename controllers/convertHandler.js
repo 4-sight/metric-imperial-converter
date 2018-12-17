@@ -36,22 +36,57 @@ const validateUnit = (val) => {
   return test
 }
 
+const validateNum = (val) => {
+
+  if(val.match(/\.+/g) && val.match(/\.+/g).length > 1) {
+    return "invalid number"
+  }
+  return val
+}
+
+const roundNum = (num) => {
+  return Math.round(num * 100000) / 100000
+}
+
 function ConvertHandler() {
 
   
   this.getNum = function(input) {
 
+    let valueArr;
     const splitPoint = input.search(/[^\.|^\d|^\/]/)
     let value = input.slice(0, splitPoint)
-    if (!value) {
-      value = 1
-    } else {
-      if (value.match(/\/+/g) && value.match(/\/+/g).length > 1) {
-        value = "invalid number"
+    try {
+      if (!value) {
+        value = 1
+      } else {
+        if (value.match(/\/+/g) && value.match(/\/+/g).length > 1) {
+          throw "invalid number"
+        } else {
+          if (value.match(/\/+/g)) {
+            valueArr = value.split("/")
+          } else {
+            valueArr = [value]
+          }
+          valueArr.forEach(element => {
+            if(validateNum(element) === element) {
+              return element
+            } else {
+              throw "invalid number"
+            }
+          });
+
+          if (valueArr.length > 1) {
+            let dec = valueArr[0] / valueArr[1]
+            return roundNum(dec)
+          } 
+          return roundNum(valueArr[0])
+        }
       }
     }
-
-    return value
+    catch(err) {
+      return "invalid number"
+    }
   };
   
   this.getUnit = function(input) {
