@@ -66,7 +66,7 @@ function ConvertHandler() {
     const splitPoint = input.search(/[^\.|^\d|^\/]/)
     let value = input.slice(0, splitPoint)
     try {
-      if (!value) {console.log("here")
+      if (!value) {
         return 1
       } else {
         if (value.match(/\/+/g) && value.match(/\/+/g).length > 1) {
