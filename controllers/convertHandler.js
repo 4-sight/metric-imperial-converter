@@ -107,9 +107,10 @@ function ConvertHandler() {
     
     const splitPoint = input.search(/[^\.|^\d|^\/]/)
     let value = input.slice(splitPoint)
-    try {validateUnit(value)}
+    let validated
+    try {validated = validateUnit(value)}
     catch(err) {return false}
-    return value
+    return validated
   };
   
   this.getReturnUnit = function(initUnit) {
