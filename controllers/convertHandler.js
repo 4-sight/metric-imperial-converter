@@ -18,6 +18,7 @@ const validateUnit = (val) => {
 
   const units = {
     gal: "gal",
+    GAL: "gal",
     gals: "gal",
     gallons: "gal",
     l: "L",
@@ -25,15 +26,19 @@ const validateUnit = (val) => {
     liters: "L",
     lb: "lbs",
     lbs: "lbs",
+    LBS: "lbs",
     pounds: "lbs",
     kg: "kg",
+    KG: "kg",
     Kg: "kg",
     Kgs: "kg",
     kilograms: "kg",
     mi: "mi",
+    MI: "mi",
     miles: "mi",
     km: "km",
     Km: "km",
+    KM: "km",
     kilometers: "km"
   }
 
