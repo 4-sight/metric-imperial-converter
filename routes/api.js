@@ -29,7 +29,7 @@ module.exports = function (app) {
         else if(!initNum) { throw "invalid number" }
         else if(!initUnit) { throw "invalid unit" }
       }
-      catch(err) {res.json(err)}
+      catch(err) {res.send(err)}
 
       res.json({
         initNum: initNum,
