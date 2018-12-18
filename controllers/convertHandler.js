@@ -132,9 +132,8 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function(unit) {
-    var result;
     
-    return result;
+    return `${fullUnit[unit]}`
   };
   
   this.convert = function(initNum, initUnit) {
